@@ -1,6 +1,6 @@
 # Delete Old Retweets
 
-Script to delete retweets using your Twitter archive. These are different from quote tweets. This script does not delete quote tweets.
+Script to delete [retweets](https://help.twitter.com/en/using-twitter/retweet-faqs) using your Twitter archive. These are different from quote tweets. This script does not delete quote tweets.
 
 This script does not delete the original tweet. It does remove retweets from your timeline.
 
