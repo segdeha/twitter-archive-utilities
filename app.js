@@ -25,26 +25,28 @@ function readTweets(err, content, next) {
 function handleEndOfFiles(err, files) {
     if (err) throw err
     console.log(`Finished reading ${files.length} files`)
-    if ('true' === process.env.RETWEETS_DELETE) {
-        filterRetweets()
-    }
-    else {
-        console.log(`To delete retweets, change the value of RETWEETS_DELETE to true in your .env file`)
-    }
+    filterRetweets()
 }
 
 function filterRetweets() {
     console.log('Total tweets:', tweets.length)
     let retweets = tweets.filter(tweet => {
         return (
+            // is a retweet
             typeof tweet.retweeted_status !== 'undefined'
             &&
+            // is older than RETWEETS_MAX_AGE
             new Moment().diff(new Moment(new Date(tweet.created_at)), 'days') >= process.env.RETWEETS_MAX_AGE
         )
     })
     console.log('Total retweets:', retweets.length)
-    if (retweets.length > 0) {
-        deleteRetweets(retweets)
+    if ('true' === process.env.RETWEETS_DELETE) {
+        if (retweets.length > 0) {
+            deleteRetweets(retweets)
+        }
+    }
+    else {
+        console.log(`To delete retweets, change the value of RETWEETS_DELETE to true in your .env file`)
     }
 }
 
