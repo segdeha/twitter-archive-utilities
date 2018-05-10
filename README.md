@@ -15,3 +15,5 @@ This script does not delete the original tweet. It does remove retweets from you
 1. Open a terminal window
 1. Run `npm install` (first use only)
 1. Run `node app.js`
+
+*Inspired by Mike Pacific’s [Node-Delete-Your-Tweets](https://github.com/mpacific/Node-Delete-Your-Tweets) script.*
