@@ -12,7 +12,7 @@ This script does not delete the original tweet. It does remove retweets from you
 1. Add your tokens and keys to `.env` along with your username
 1. In `.env`, set the max age (in days) of the retweets you want to keep and change the value of `RETWEETS_DELETE` to `true`
 1. Request your archive from [your Twitter settings page](https://twitter.com/settings/account)
-1. From the downloaded archive, copy the `tweets` directory (located in `<archive>/data/`) to the root of the `twitter-archive-utilities` directory
+1. From the downloaded archive, copy the `tweets` directory (located in `<archive>/data/js`) to the root of the `twitter-archive-utilities` directory
 1. Open a terminal window
 1. Run `npm install` (first use only)
 1. Run `node app.js`
