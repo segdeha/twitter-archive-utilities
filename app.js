@@ -6,6 +6,7 @@ const fs = require('fs')
 const Promise = require('bluebird')
 
 let tweets = []
+let deletedTweetsFilename = './deleted-retweet-ids.txt'
 
 function readTweets(err, content, next) {
     if (err) throw err
@@ -30,8 +31,15 @@ function handleEndOfFiles(err, files) {
 }
 
 function getPreviouslyDeletedRetweets() {
-    let contents = fs.readFileSync('./deleted-retweet-ids.txt', 'utf8')
-    let deletedRetweets = contents.split('\n')
+    let deletedRetweets
+    try {
+        let contents = fs.readFileSync(deletedTweetsFilename, 'utf8')
+        deletedRetweets = contents.split('\n')
+    }
+    catch(e) {
+        fs.writeFileSync(deletedTweetsFilename, '\n', 'utf8')
+        deletedRetweets = []
+    }
     return deletedRetweets
 }
 
@@ -77,7 +85,7 @@ function deleteRetweet(retweet) {
             console.log(`Deleted retweet with ID: ${id}`)
             // write to file so we can avoid making requests for already deleted retweets
             try {
-                fs.appendFileSync('./deleted-retweet-ids.txt', `${id}\n`, 'utf8')
+                fs.appendFileSync(deletedTweetsFilename, `${id}\n`, 'utf8')
             } catch (err) {
                 console.log('Problem writing to file:', err)
             }
