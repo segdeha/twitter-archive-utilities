@@ -1,0 +1,29 @@
+{
+  "name": "twitter-archive-utilities",
+  "version": "1.0.0",
+  "description": "Manipulate your Twitter timeline based on your downloaded tweets archive",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/segdeha/twitter-archive-utilities.git"
+  },
+  "author": "Andrew Hedges andrew@hedges.name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/segdeha/twitter-archive-utilities/issues"
+  },
+  "homepage": "https://github.com/segdeha/twitter-archive-utilities#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "crypto-js": "^3.1.9-1",
+    "dotenv": "^5.0.1",
+    "moment": "^2.22.1",
+    "node-dir": "^0.1.17",
+    "randomstring": "^1.1.5",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  }
+}
