@@ -31,18 +31,16 @@ function handleEndOfFiles(err, files) {
 function filterRetweets() {
     console.log('Total tweets:', tweets.length)
     let retweets = tweets.filter(tweet => {
-        return (
-            // is a retweet
-            typeof tweet.retweeted_status !== 'undefined'
-            &&
-            // is older than RETWEETS_MAX_AGE
-            new Moment().diff(new Moment(new Date(tweet.created_at)), 'days') >= process.env.RETWEETS_MAX_AGE
-        )
+        return typeof tweet.retweeted_status !== 'undefined'
     })
-    console.log('Total retweets:', retweets.length)
+    console.log(`Total retweets:`, retweets.length)
+    let oldRetweets = retweets.filter(tweet => {
+        return new Moment().diff(new Moment(new Date(tweet.created_at)), 'days') >= process.env.RETWEETS_MAX_DAYS
+    })
+    console.log(`Retweets older than ${process.env.RETWEETS_MAX_DAYS} days:`, oldRetweets.length)
     if ('true' === process.env.RETWEETS_DELETE) {
-        if (retweets.length > 0) {
-            deleteRetweets(retweets)
+        if (oldRetweets.length > 0) {
+            deleteRetweets(oldRetweets)
         }
     }
     else {
